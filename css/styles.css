@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'Hero';
+	src: url('../assets/fonts/Hero/Hero.otf');
+}
+
 #banner {
 	width: 70%;
 	margin: 0px auto;
@@ -45,10 +50,10 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Hero', sans-serif;
 	line-height: 1.1em;
 }
-h1{
+h1 {
 	text-align: center;
 	font-size: 63px;
 }
@@ -58,7 +63,7 @@ h1 span {
 	background: url('../assets/img/logo_banner_only.jpg') no-repeat center center;
 	background-size: 100% auto;
 	display: inline-block;
-	margin: ;
+	vertical-align: middle;
 }
 #inputs {
 	display: table;
@@ -77,7 +82,7 @@ h1 span {
 }
 #inputs .input_row .input_row_label {
 	width: 20%;
-	font: bold 28px 'Oswald', sans-serif;
+	font: bold 28px 'Hero', sans-serif;
 	background: #603765;
 	color: white;
 }

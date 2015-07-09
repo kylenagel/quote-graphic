@@ -23,7 +23,7 @@ var canvas_properties = {
     max_width: 600,
     text: '',
     text_fillStyle: '#ffffff',
-    text_font_family: 'Varela Round',
+    text_font_family: 'Hero',
     text_font_size: 40,
     text_line_height: '',
     text_max_width: '',
@@ -159,7 +159,7 @@ function drawQuoteText() {
     // SET FONT COLOR
     canvas_properties.context.fillStyle = canvas_properties.text_fillStyle;
     // SPLIT TEXT INTO WORDS BY SPACES
-    var words = canvas_properties.text.split(" ");
+    var words = canvas_properties.text.toUpperCase().split(" ");
     // THIS VARIABLE WILL HOLD TEXT FOR THE CURRENT LINE
     var this_line = '';
     // THIS VARIABLE WILL HOLD THE CURRENT Y VALUE

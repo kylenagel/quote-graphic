@@ -5,6 +5,7 @@ resize image before drawing: http://stackoverflow.com/questions/10333971/html5-p
 download canvas as image: http://jsfiddle.net/AbdiasSoftware/7PRNN/
 */
 
+// KEY PROPERTIES OF THE CANVAS ELEMENTS
 var canvas_properties = {
     background_image: '',
     background_image_input: document.getElementById("background_image"),
@@ -30,6 +31,7 @@ var canvas_properties = {
     text_y: 40,
 }
 
+// ARRAY OF INPUTS TO CHANGE CANVAS PROPERTIES
 var canvas_inputs = [
     {
         row_id: 'quote_text',
@@ -152,50 +154,59 @@ function drawBackgroundImage() {
 }
 
 function drawQuoteText() {
+    // SET FONT SIZE AND FONT FAMILY
     canvas_properties.context.font = canvas_properties.text_font_size+"px "+canvas_properties.text_font_family;
+    // SET FONT COLOR
     canvas_properties.context.fillStyle = canvas_properties.text_fillStyle;
-    var line_start_y = canvas_properties.text_font_size;
-    canvas_properties.text_line_height = canvas_properties.text_font_size;
-
+    // SPLIT TEXT INTO WORDS BY SPACES
     var words = canvas_properties.text.split(" ");
-
+    // THIS VARIABLE WILL HOLD TEXT FOR THE CURRENT LINE
     var this_line = '';
+    // THIS VARIABLE WILL HOLD THE CURRENT Y VALUE
+    // INIT WIT THE CURRENT line_y FROM CANVAS PROPERTIES
     var this_line_y = canvas_properties.text_y;
-    var line_number = 1;
-
+    // LOOP THROUGH THE WORDS
     for (var i=0; i<words.length; i++) {
+        // ADD THE CURRENT WORD TO THE CURRENT LINE TO TEST ITS LENGTH
         var test_line = this_line + words[i]+" ";
+        // IF THE TEST LINE IS SHORTER THAN THE TEXT MAX WIDTH, ADD IT FOR GOOD
         if (canvas_properties.context.measureText(test_line).width < canvas_properties.text_max_width) {
             this_line = this_line += words[i]+" ";
+        // OR, IF THE TEST LINE IS LONGER THAN THE MAX WIDTH, CREATE A NEW LINE AND RESET THE Y VALUE
         } else {
             this_line = words[i]+" ";
-            line_number = line_number+1;
             this_line_y = Number(this_line_y)+Number(canvas_properties.text_font_size);
         }
+        // DRAW THIS LINE ON THE PAGE
         canvas_properties.context.fillText(this_line, canvas_properties.text_x, this_line_y, canvas_properties.text_max_width);
     }
 
 }
 
 function drawLogo() {
-
+    // INIT NEW IMAGE
     var new_logo_image = new Image();
+    // SET IMAGE SRC FROM LOGO FILE PATH
     new_logo_image.src = canvas_properties.logo_image;
+    // ONCE IMAGE LOADS
     new_logo_image.onload = function() {
+        // SET THE LOGO IMAGE PROPERTY FOR USE IN DRAWING ON THE PAGE
         canvas_properties.logo_html_image = new_logo_image;
+        // GET LOGO WIDTH
         var width = new_logo_image.width;
+        // GET LOGO HEIGHT
         var height = new_logo_image.height;
+        // GET LOGO PROPORTION
         var logo_proportion = width/height;
+        // SET THE LOGO WIDTH TO HALF OF THE CANVAS
         canvas_properties.logo_width = canvas_properties.canvas_width/2;
+        // SET THE LOGO HEIGHT TO KEEP THE PROPORTION
         canvas_properties.logo_height = canvas_properties.logo_width/logo_proportion;
+        // SET THE Y VALUE FOR THE LOGO SO IT IS THE HEIGHT OF THE CANVAS MINUS THE LOGO HEIGHT
         canvas_properties.logo_y = canvas_properties.canvas_height-canvas_properties.logo_height;
-
-    
+        // DRAW THE LOGO IMAGE
         canvas_properties.context.drawImage(canvas_properties.logo_html_image, canvas_properties.logo_x, canvas_properties.logo_y, canvas_properties.logo_width, canvas_properties.logo_height);
-    };
-
-    
-    
+    }; 
 }
 
 function downloadImage(el) {

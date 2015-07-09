@@ -1,0 +1,13 @@
+{{#each inputs}}
+<div id="{{row_id}}" class="input_row">
+	<div class="input_row_label">{{label}}</div>
+	{{#each inputs}}
+	<div class="input_block">
+		{{#if label}}
+		<label for="{{canvas_property}}">{{label}}</label>
+		{{/if}}
+		<{{tag}} type="{{type}}" name="{{canvas_property}}" value="{{value}}" {{event}}="changeProperty('{{canvas_property}}', this.value)" />
+	{{/each}}
+	</div>
+</div>
+{{/each}}

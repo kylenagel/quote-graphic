@@ -5,6 +5,10 @@
 <title>#IAmDayton photo generator</title>
 
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://host.coxmediagroup.com/cop/digital/common/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/styles.css">
 
 <script src="http://host.coxmediagroup.com/cop/digital/common/js/jquery-1.11.2.min.js"></script>
 <script src="http://host.coxmediagroup.com/cop/digital/common/js/handlebars-v3.0.0.js"></script>
@@ -12,15 +16,27 @@
 </head>
 <body>
 
-<input type='file' id="background_image" onchange="getBackgroundImage()"/>
-<div id="inputs"></div>
-<!--
-<textarea id="canvas_text" onkeyup="changeProperty('text', this.value)"></textarea>
--->
-<a id="download" onclick="downloadImage(this)">DOWNLOAD THIS IMAGE</a>
-<canvas id="canvas">
-   Browser missing HTML5 support.
-</canvas> 
+<div id="container">
+
+	<h1>MAKE YOUR OWN<br><span></span> QUOTE</h1>
+
+	<div id="upload_photo">
+		<input type='file' id="background_image" onchange="getBackgroundImage()"/>
+	</div>
+
+	<div id="body">
+
+		<div id="left_column" class="column">
+			<div id="inputs_container"></div>
+		</div>
+
+		<div id="right_column" class="column">
+			<canvas id="canvas">Your browser does not support elements required for this tool</canvas>
+		</div>
+
+	</div>
+
+</div>
 
 <script src="js/scripts.js"></script>
 </body>

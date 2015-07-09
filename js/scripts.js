@@ -12,16 +12,22 @@ var canvas_properties = {
     canvas_height: '',
     canvas_width: '',
     context: this.canvas.getContext("2d"),
+    logo_image: 'assets/img/logo_banner_only.jpg',
+    logo_html_image: '',
+    logo_x: 0,
+    logo_y: '',
+    logo_height: '',
+    logo_width: '',
     max_height: 600,
     max_width: 600,
     text: '',
-    text_fillStyle: '#fff',
+    text_fillStyle: '#ffffff',
     text_font_family: 'Varela Round',
-    text_font_size: 24,
+    text_font_size: 40,
     text_line_height: '',
     text_max_width: '',
     text_x: 0,
-    text_y: 24,
+    text_y: 40,
 }
 
 var canvas_inputs = [
@@ -75,6 +81,14 @@ var canvas_inputs = [
                 canvas_property: 'text_max_width',
                 value: '',
             },
+            {
+                tag: 'input',
+                type: 'color',
+                label: 'Font color',
+                event: 'onchange',
+                canvas_property: 'text_fillStyle',
+                value: canvas_properties.text_fillStyle,
+            }
         ]
     },
 ]
@@ -106,7 +120,6 @@ function getBackgroundImage() {
                 // SET TEXT MAX WIDTH
                 canvas_properties.text_max_width = canvas_properties.canvas_width / 2;
                 // SEND THAT MAX WIDTH CALCULATION TO MAX WIDTH INPUT
-                console.log(canvas_inputs[1].inputs[3].value);
                 canvas_inputs[1].inputs[3].value = Math.round(canvas_properties.canvas_width / 2);
                 // SET CANVAS HEIGHT AND WIDTH
                 canvas_properties.canvas.width = canvas_properties.canvas_width;
@@ -131,6 +144,7 @@ function drawFullCanvas() {
     clearCanvas();
     drawBackgroundImage();
     drawQuoteText();
+    drawLogo();
 }
 
 function drawBackgroundImage() {
@@ -158,10 +172,30 @@ function drawQuoteText() {
             line_number = line_number+1;
             this_line_y = Number(this_line_y)+Number(canvas_properties.text_font_size);
         }
-        console.log(this_line_y);
         canvas_properties.context.fillText(this_line, canvas_properties.text_x, this_line_y, canvas_properties.text_max_width);
     }
 
+}
+
+function drawLogo() {
+
+    var new_logo_image = new Image();
+    new_logo_image.src = canvas_properties.logo_image;
+    new_logo_image.onload = function() {
+        canvas_properties.logo_html_image = new_logo_image;
+        var width = new_logo_image.width;
+        var height = new_logo_image.height;
+        var logo_proportion = width/height;
+        canvas_properties.logo_width = canvas_properties.canvas_width/2;
+        canvas_properties.logo_height = canvas_properties.logo_width/logo_proportion;
+        canvas_properties.logo_y = canvas_properties.canvas_height-canvas_properties.logo_height;
+
+    
+        canvas_properties.context.drawImage(canvas_properties.logo_html_image, canvas_properties.logo_x, canvas_properties.logo_y, canvas_properties.logo_width, canvas_properties.logo_height);
+    };
+
+    
+    
 }
 
 function downloadImage(el) {
@@ -177,10 +211,9 @@ function changeProperty(property, new_value) {
 function outputInputs() {
     var data = {};
     data.inputs = canvas_inputs;
-    console.log(canvas_inputs);
     $.get('hbs/inputs_template.hbs')
         .done(function(template) {
             template = Handlebars.compile(template);
-            $("#inputs").html(template(data));
+            $("#inputs_container").html(template(data));
         });
 }

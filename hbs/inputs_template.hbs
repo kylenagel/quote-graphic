@@ -1,13 +1,23 @@
-{{#each inputs}}
-<div id="{{row_id}}" class="input_row">
-	<div class="input_row_label">{{label}}</div>
+<div id="inputs">
 	{{#each inputs}}
-	<div class="input_block">
-		{{#if label}}
-		<label for="{{canvas_property}}">{{label}}</label>
-		{{/if}}
-		<{{tag}} type="{{type}}" name="{{canvas_property}}" value="{{value}}" {{event}}="changeProperty('{{canvas_property}}', this.value)" />
-	{{/each}}
+	<div id="{{row_id}}" class="input_row">
+		<div class="input_row_label input_row_section">{{label}}</div>
+		<div class="input_row_inputs input_row_section">
+			<div class="input_row_inputs_inner_container">
+				{{#each inputs}}
+				<div class="input_block">
+					{{#if label}}
+					<label for="{{canvas_property}}">{{label}}</label>
+					{{/if}}
+					<{{tag}} type="{{type}}" name="{{canvas_property}}" value="{{value}}" {{event}}="changeProperty('{{canvas_property}}', this.value)" />
+				</div>
+				{{/each}}
+			</div>
+		</div>
 	</div>
+	{{/each}}
 </div>
-{{/each}}
+
+<div id="download_button_container">
+	<a id="download" onclick="downloadImage(this)">DOWNLOAD <span class="fa fa-download"></span> </a>
+</div>

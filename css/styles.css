@@ -1,0 +1,127 @@
+#banner {
+	width: 70%;
+	margin: 0px auto;
+}
+#body {}
+#body .column {
+	display: block;
+	vertical-align: top;
+}
+#canvas {
+	margin: 0px auto;
+	display: block;
+}
+#container {
+	width: 85%;
+	margin: 0px auto;
+	min-width: 800px;
+}
+#download_button_container {
+	margin-top: 14px;
+	text-align: center;
+}
+#download_button_container a {
+	text-align: center;
+	padding: 21px 35px;
+	color: white;
+	background: #f6693a;
+	font: 21px 'Open Sans', sans-serif;
+	display: inline-block;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	cursor: pointer;
+	border-bottom: solid 7px #BF4A22;
+	transition: 600ms;
+	-moz-transition: 600ms;
+	-webkit-transition: 600ms;
+}
+#download_button_container a:hover {
+	opacity: 0.4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Oswald', sans-serif;
+	line-height: 1.1em;
+}
+h1{
+	text-align: center;
+	font-size: 63px;
+}
+h1 span {
+	width: 343px;
+	height: 56px;
+	background: url('../assets/img/logo_banner_only.jpg') no-repeat center center;
+	background-size: 100% auto;
+	display: inline-block;
+	margin: ;
+}
+#inputs {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+#inputs .input_row {
+	display: table-row;
+	padding: 14px 0px;
+}
+#inputs .input_row .input_row_section {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 14px;
+	box-sizing: border-box;
+}
+#inputs .input_row .input_row_label {
+	width: 20%;
+	font: bold 28px 'Oswald', sans-serif;
+	background: #603765;
+	color: white;
+}
+#inputs .input_row .input_row_inputs {
+	text-align: center;
+	background: #ededed;
+}
+#inputs .input_row .input_row_inputs .input_row_inputs_inner_container {
+	display: table;
+	border-collapse: collapse;
+	width: 100%;
+}
+#inputs .input_row .input_row_inputs .input_row_inputs_inner_container .input_block {
+	display: table-cell;
+}
+#inputs .input_row .input_row_inputs .input_row_inputs_inner_container .input_block label {
+	display: block;
+	font: 12px 'Open Sans', sans-serif;
+	line-height: 1.1em;
+	margin-bottom: 4px;
+}
+#inputs input[type="number"],
+#inputs input[type="text"],
+#inputs textarea {
+	border: solid thin rgba(0,0,0,0.1);
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 7px;
+	box-sizing: border-box;
+}
+#inputs textarea {
+	width: 100%;
+	height: 42px;
+}
+#inputs input[type="number"] {}
+#left_column {
+	margin-bottom: 35px;
+}
+p {
+	font: 14px 'Open Sans', sans-serif;
+	line-height: 1.5em;
+}
+#upload_photo {
+	text-align: center;
+	margin-bottom: 14px;
+}

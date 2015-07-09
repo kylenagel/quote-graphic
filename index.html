@@ -40,6 +40,7 @@ var canvas_properties = {
     text_fillStyle: '#fff',
     text_font_family: 'Varela Round',
     text_font_size: 24,
+    text_line_height: '',
     text_max_width: '',
     text_x: 0,
     text_y: '',
@@ -101,7 +102,27 @@ function drawBackgroundImage() {
 function drawQuoteText() {
     canvas_properties.context.font = canvas_properties.text_font_size+"px "+canvas_properties.text_font_family;
     canvas_properties.context.fillStyle = canvas_properties.text_fillStyle;
-    canvas_properties.context.fillText(canvas_properties.text, canvas_properties.text_x, canvas_properties.text_font_size, canvas_properties.text_max_width);
+    var line_start_y = canvas_properties.text_font_size;
+    canvas_properties.text_line_height = canvas_properties.text_font_size;
+
+    var words = canvas_properties.text.split(" ");
+
+    var this_line = '';
+
+    var line_number = 1;
+
+    for (var i=0; i<words.length; i++) {
+        var test_line = this_line + words[i]+" ";
+        if (canvas_properties.context.measureText(test_line).width < canvas_properties.text_max_width) {
+            this_line = this_line += words[i]+" ";
+        } else {
+            this_line = words[i]+" ";
+            line_number = line_number+1;
+        }
+        console.log(canvas_properties.text_x);
+        canvas_properties.context.fillText(this_line, canvas_properties.text_x, (canvas_properties.text_font_size*line_number), canvas_properties.text_max_width);
+    }
+
 }
 
 function downloadImage(el) {
